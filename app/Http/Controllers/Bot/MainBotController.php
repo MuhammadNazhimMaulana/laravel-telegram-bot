@@ -10,7 +10,12 @@ class MainBotController extends Controller
     public function setWebhook()
     {
         $response = Telegram::setWebhook(['url' => env('TELEGRAM_WEBHOOK_URL')]);
-	    dd($response);
+
+        $data = [
+            'response' => $response
+        ];
+
+        return view('Chat/index', $data);
     }
 
     public function commandHandlerWebhook()
@@ -23,5 +28,9 @@ class MainBotController extends Controller
             'chat_id' => $chat_id, 
             'text' => 'Halo ' . $username 
         ]);
+
+        // Checking Phone Number
+        $phone_number = array_key_exists('contact', $updates['message']) ? $updates['message']['contact']['phone_number'] : null;
+        if($phone_number) return Telegram::sendMessage(['chat_id' => $chat_id, 'text' => 'Nomor telepon Anda adalah ' . $phone_number]);
     }
 }
