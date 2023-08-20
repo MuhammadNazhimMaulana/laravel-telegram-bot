@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Bot;
 
 use App\Http\Controllers\Controller;
+use App\Models\Contact;
 use Telegram;
 
 class MainBotController extends Controller
@@ -24,6 +25,16 @@ class MainBotController extends Controller
         $chat_id = $updates->getChat()->getId();
         $username = $updates->getChat()->getFirstName();
 
+        // Check Contact Exist or not
+        if(!Contact::where('chat_id', $chat_id)->first())
+        {
+            // Save Contact Data
+            $new_contact = new Contact;
+            $new_contact->chat_id = $chat_id;
+            $new_contact->first_name = $username;
+            $new_contact->save();
+        }
+
         // Checking Sent Message
         if(strtolower($updates->getMessage()->getText() === 'halo')) return Telegram::sendMessage([
             'chat_id' => $chat_id, 
@@ -36,4 +47,5 @@ class MainBotController extends Controller
             'chat_id' => $chat_id, 'text' => 'Nomor telepon Anda adalah ' . $phone_number
         ]);
     }
+    
 }
