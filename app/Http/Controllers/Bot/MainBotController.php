@@ -24,6 +24,7 @@ class MainBotController extends Controller
         $chat_id = $updates->getChat()->getId();
         $username = $updates->getChat()->getFirstName();
 
+        // Checking Sent Message
         if(strtolower($updates->getMessage()->getText() === 'halo')) return Telegram::sendMessage([
             'chat_id' => $chat_id, 
             'text' => 'Halo ' . $username 
@@ -31,6 +32,8 @@ class MainBotController extends Controller
 
         // Checking Phone Number
         $phone_number = array_key_exists('contact', $updates['message']) ? $updates['message']['contact']['phone_number'] : null;
-        if($phone_number) return Telegram::sendMessage(['chat_id' => $chat_id, 'text' => 'Nomor telepon Anda adalah ' . $phone_number]);
+        if($phone_number) return Telegram::sendMessage([
+            'chat_id' => $chat_id, 'text' => 'Nomor telepon Anda adalah ' . $phone_number
+        ]);
     }
 }

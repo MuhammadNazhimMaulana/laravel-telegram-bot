@@ -37,6 +37,7 @@ return [
             'commands'            => [
                 //Acme\Project\Commands\MyTelegramBot\BotCommand::class
                 App\Telegram\Commands\PhoneNumberCommand::class,
+                App\Telegram\Commands\LocationCommand::class,
             ],
         ],
 

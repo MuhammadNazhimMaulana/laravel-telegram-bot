@@ -2,7 +2,6 @@
 
 namespace App\Telegram\Commands;
 
-use App\Http\Controllers\Controller;
 use Telegram\Bot\Keyboard\Keyboard;
 use Telegram\Bot\Commands\Command;
 use Telegram;
