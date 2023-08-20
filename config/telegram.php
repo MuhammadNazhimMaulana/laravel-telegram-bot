@@ -39,6 +39,7 @@ return [
                 App\Telegram\Commands\PhoneNumberCommand::class,
                 App\Telegram\Commands\LocationCommand::class,
                 App\Telegram\Commands\PollCommand::class,
+                App\Telegram\Commands\MessageCommand::class,
             ],
         ],
 
