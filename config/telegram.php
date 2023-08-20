@@ -40,6 +40,7 @@ return [
                 App\Telegram\Commands\LocationCommand::class,
                 App\Telegram\Commands\PollCommand::class,
                 App\Telegram\Commands\MessageCommand::class,
+                App\Telegram\Commands\ForwardMessageCommand::class,
             ],
         ],
 

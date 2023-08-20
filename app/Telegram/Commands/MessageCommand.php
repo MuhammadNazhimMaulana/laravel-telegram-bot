@@ -22,19 +22,28 @@ class MessageCommand extends Command
     * @var string Deskripsi Perintah
     */
     protected $description = 'Perintah untuk mengirimkan pesan';
+
+    /**
+     * @var string Command Pattern
+     */
+    protected $pattern = '{first_argument} {second_argument}';
+
     /**
     * {@inheritdoc}
     */
     
     public function handle()
     {
-        // Find Chat
-       $contact = Contact::where('first_name', 'Aef')->first();
+        // Get Arguments
+        $args = $this->getArguments();
 
-       //Sending Location
-       return $this->telegram->sendMessage([
-           'chat_id' => $contact->chat_id,
-           'text' => "Anjay Mas e"
-       ]);
+        // Find Chat
+       $contact = Contact::where('first_name', 'Nazhim')->first();
+
+        //Sending Message with args
+        return $this->telegram->sendMessage([
+        'chat_id' => $contact->chat_id,
+        'text' => "Anjay Mas e "  . ($args['first_argument'] ? $args['first_argument'] . ' ' : ' ') . ($args['second_argument'] ? $args['second_argument'] : '')
+    ]);
    }
 }
