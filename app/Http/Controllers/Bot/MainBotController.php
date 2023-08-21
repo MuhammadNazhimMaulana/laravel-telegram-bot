@@ -38,6 +38,13 @@ class MainBotController extends Controller
             $new_contact->save();
         }
 
+        // Check Updates
+        $this->checkUpdate($updates, $chat_id, $username);
+    }
+    
+    private function checkUpdate($updates, $chat_id, $username)
+    {
+
         // Checking Sent Message
         if(strtolower($updates->getMessage()->getText() === 'halo')) return Telegram::sendMessage([
             'chat_id' => $chat_id, 
@@ -46,9 +53,16 @@ class MainBotController extends Controller
 
         // Checking Phone Number
         $phone_number = array_key_exists('contact', $updates['message']) ? $updates['message']['contact']['phone_number'] : null;
+        
+        // Check If There is pone number or not
         if($phone_number) return Telegram::sendMessage([
             'chat_id' => $chat_id, 'text' => 'Nomor telepon Anda adalah ' . $phone_number
         ]);
+
+        // Last Thing
+        if(!strtolower($updates->getMessage()->getText() === 'halo')) return Telegram::sendMessage([
+            'chat_id' => $chat_id, 
+            'text' => 'Halo ' . $username .', silakan coba ketik /help untuk melihat daftar perintah yang bisa anda coba'
+        ]);
     }
-    
 }
