@@ -45,12 +45,9 @@ class MainBotController extends Controller
     private function checkUpdate($updates, $chat_id, $username)
     {
         // error_log(implode(' ', $updates['message']['location']));
-        
+
         // Checking Sent Message
-        if(strtolower($updates->getMessage()->getText() === 'halo')) return Telegram::sendMessage([
-            'chat_id' => $chat_id, 
-            'text' => 'Halo ' . $username 
-        ]);
+        app('App\Http\Controllers\Bot\GreetingController')->greet($updates, $chat_id, $username);
 
         // Checking Phone Number
         $phone_number = array_key_exists('contact', $updates['message']) ? $updates['message']['contact']['phone_number'] : null;
