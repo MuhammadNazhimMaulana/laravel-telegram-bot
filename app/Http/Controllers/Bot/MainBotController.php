@@ -44,7 +44,8 @@ class MainBotController extends Controller
     
     private function checkUpdate($updates, $chat_id, $username)
     {
-        error_log(implode(' ', $updates['message']['location']));
+        // error_log(implode(' ', $updates['message']['location']));
+        
         // Checking Sent Message
         if(strtolower($updates->getMessage()->getText() === 'halo')) return Telegram::sendMessage([
             'chat_id' => $chat_id, 
@@ -70,9 +71,6 @@ class MainBotController extends Controller
         ]);
 
         // Last Thing
-        if(!strtolower($updates->getMessage()->getText() === 'halo')) return Telegram::sendMessage([
-            'chat_id' => $chat_id, 
-            'text' => 'Halo ' . $username .', silakan coba ketik /help untuk melihat daftar perintah yang bisa anda coba'
-        ]);
+        app('App\Http\Controllers\Bot\MessageController')->message($updates, $chat_id, $username);
     }
 }
