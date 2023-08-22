@@ -44,7 +44,7 @@ class MainBotController extends Controller
     
     private function checkUpdate($updates, $chat_id, $username)
     {
-
+        error_log(implode(' ', $updates['message']['location']));
         // Checking Sent Message
         if(strtolower($updates->getMessage()->getText() === 'halo')) return Telegram::sendMessage([
             'chat_id' => $chat_id, 
@@ -56,7 +56,17 @@ class MainBotController extends Controller
         
         // Check If There is pone number or not
         if($phone_number) return Telegram::sendMessage([
-            'chat_id' => $chat_id, 'text' => 'Nomor telepon Anda adalah ' . $phone_number
+            'chat_id' => $chat_id, 
+            'text' => 'Nomor telepon Anda adalah ' . $phone_number
+        ]);
+        
+        // Check Location
+        $location = array_key_exists('location', $updates['message']) ? $updates['message']['location'] : null;
+
+        // Send Location detail
+        if($location) return Telegram::sendMessage([
+            'chat_id' => $chat_id, 
+            'text' => 'Lokasi yang anda kirim memiliki detail seperti ini:'.PHP_EOL.'Longitude:' . $location['latitude'] .PHP_EOL.'Latitude: '. $location['longitude'] . $phone_number
         ]);
 
         // Last Thing
