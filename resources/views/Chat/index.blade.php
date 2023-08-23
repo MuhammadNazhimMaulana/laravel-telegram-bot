@@ -14,10 +14,10 @@
           <a target="_blank" href="https://t.me/laratele_bone_bot" class="btn btn-primary">{{ __('Mulai Chat') }}</a>
           
           {{-- Managing File --}}
-          <a target="_blank" href="/upload" class="btn btn-primary">{{ __('File') }}</a>
+          {{-- <a target="_blank" href="/upload" class="btn btn-primary">{{ __('File') }}</a> --}}
 
           {{-- Showing Uploaded File --}}
-          <a target="_blank" href="/upload/list" class="btn btn-primary">{{ __('Uploaded File') }}</a>
+          {{-- <a target="_blank" href="/upload/list" class="btn btn-primary">{{ __('Uploaded File') }}</a> --}}
 
         </div>
     </div>
