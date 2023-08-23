@@ -20,10 +20,11 @@ class HomeController extends Controller
     public function list_image()
     {
         $data = [
-            'title' => 'List'
+            'title' => 'List',
+            'images' => File::get()
         ];
 
-        return view('Chat/images_list', $data);
+        return view('Chat/image_list', $data);
     }
 
     public function storeImage(StoreFile $request)

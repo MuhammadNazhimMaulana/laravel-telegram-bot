@@ -21,5 +21,6 @@ use App\Http\Controllers\Main\HomeController;
 // Upload File 
 Route::prefix('/upload')->group(function () {
     Route::get('/', [HomeController::class, 'index']);
+    Route::get('/list', [HomeController::class, 'list_image']);
     Route::post('/store', [HomeController::class, 'storeImage']);
 });

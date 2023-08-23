@@ -16,6 +16,9 @@
           {{-- Managing File --}}
           <a target="_blank" href="/upload" class="btn btn-primary">{{ __('File') }}</a>
 
+          {{-- Showing Uploaded File --}}
+          <a target="_blank" href="/upload/list" class="btn btn-primary">{{ __('Uploaded File') }}</a>
+
         </div>
     </div>
 </div>
