@@ -19,4 +19,7 @@ use App\Http\Controllers\Main\HomeController;
 // });
 
 // Upload File 
-Route::get('upload', [HomeController::class, 'index']);
+Route::prefix('/upload')->group(function () {
+    Route::get('/', [HomeController::class, 'index']);
+    Route::post('/store', [HomeController::class, 'storeImage']);
+});
