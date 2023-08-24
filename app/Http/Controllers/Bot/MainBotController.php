@@ -26,7 +26,7 @@ class MainBotController extends Controller
         $username = $updates->getChat()->getFirstName();
 
         // Testing
-        // error_log($updates);
+        error_log($updates);
 
         // Check Contact Exist or not
         if(!Contact::where('chat_id', $chat_id)->first())
