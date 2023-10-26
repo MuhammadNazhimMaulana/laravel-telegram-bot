@@ -14,9 +14,9 @@ use App\Http\Controllers\Main\HomeController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('chat.index');
-// });
+Route::get('/', function () {
+    return view('chat.index');
+});
 
 // Upload File 
 Route::prefix('/upload')->group(function () {
